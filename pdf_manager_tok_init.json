@@ -1,0 +1,564 @@
+{
+    "ToK": [
+        {
+            "prefix": "0",
+            "string": "Active"
+        },
+        {
+            "prefix": "01",
+            "string": "Zellig to Noam"
+        },
+        {
+            "prefix": "011",
+            "string": "Zellig Harris"
+        },
+        {
+            "prefix": "012",
+            "string": "Young Chomsky"
+        },
+        {
+            "prefix": "013",
+            "string": "Syntactic Structures"
+        },
+        {
+            "prefix": "014",
+            "string": "Pregenerative syntax"
+        },
+        {
+            "prefix": "0141",
+            "string": "Tesniere"
+        },
+        {
+            "prefix": "015",
+            "string": "Chomsky in general"
+        },
+        {
+            "prefix": "016",
+            "string": "Judaism Zionism"
+        },
+        {
+            "prefix": "017",
+            "string": "MIT"
+        },
+        {
+            "prefix": "018",
+            "string": "descriptivists"
+        },
+        {
+            "prefix": "019",
+            "string": "philosophy"
+        },
+        {
+            "prefix": "01a",
+            "string": "OSS and area studies"
+        },
+        {
+            "prefix": "01b",
+            "string": "Morphophonology"
+        },
+        {
+            "prefix": "01c",
+            "string": "Foundations"
+        },
+        {
+            "prefix": "01d",
+            "string": "Jakobson"
+        },
+        {
+            "prefix": "01e",
+            "string": "New School"
+        },
+        {
+            "prefix": "01f",
+            "string": "cold war"
+        },
+        {
+            "prefix": "01g",
+            "string": "machine translation"
+        },
+        {
+            "prefix": "01h",
+            "string": "cybernetics"
+        },
+        {
+            "prefix": "01i",
+            "string": "chapter 4"
+        },
+        {
+            "prefix": "01j",
+            "string": "Chomsky"
+        },
+        {
+            "prefix": "01k",
+            "string": "Generations"
+        },
+        {
+            "prefix": "01m",
+            "string": "Mentors"
+        },
+        {
+            "prefix": "02",
+            "string": "lxa and segmentation"
+        },
+        {
+            "prefix": "03",
+            "string": "prime suspect"
+        },
+        {
+            "prefix": "031",
+            "string": "Sidney Reilly"
+        },
+        {
+            "prefix": "032",
+            "string": "Gurdjieff"
+        },
+        {
+            "prefix": "033",
+            "string": "prime numbers"
+        },
+        {
+            "prefix": "034",
+            "string": "Voynich"
+        },
+        {
+            "prefix": "04",
+            "string": "Battle in the mind fields"
+        },
+        {
+            "prefix": "041",
+            "string": "chapter 1"
+        },
+        {
+            "prefix": "042",
+            "string": "chapter 2"
+        },
+        {
+            "prefix": "0421",
+            "string": "IndoEuropean"
+        },
+        {
+            "prefix": "043",
+            "string": "chapter 3 19th century philosophy"
+        },
+        {
+            "prefix": "044",
+            "string": "chapter 4 Psychology 19th century"
+        },
+        {
+            "prefix": "045",
+            "string": "chapter 5 Psychology 1900-1940"
+        },
+        {
+            "prefix": "0451",
+            "string": "Gestalt psychology"
+        },
+        {
+            "prefix": "046",
+            "string": "chapter 6 Sapir and Bloomfield"
+        },
+        {
+            "prefix": "0461",
+            "string": "Bloomfield"
+        },
+        {
+            "prefix": "047",
+            "string": "chapter 7 Philosophy"
+        },
+        {
+            "prefix": "0471",
+            "string": "Vienna circle"
+        },
+        {
+            "prefix": "048",
+            "string": "chapter 8 Logic"
+        },
+        {
+            "prefix": "049",
+            "string": "chapter 9"
+        },
+        {
+            "prefix": "0491",
+            "string": "Jakobson"
+        },
+        {
+            "prefix": "05",
+            "string": "JFK"
+        },
+        {
+            "prefix": "06",
+            "string": " Confrontation (Volume 2)"
+        },
+        {
+            "prefix": "1",
+            "string": "Linguistics"
+        },
+        {
+            "prefix": "11",
+            "string": "Phonology"
+        },
+        {
+            "prefix": "111",
+            "string": "Autosegmental phonology"
+        },
+        {
+            "prefix": "12",
+            "string": " Morphology"
+        },
+        {
+            "prefix": "13",
+            "string": "Syntax"
+        },
+        {
+            "prefix": "14",
+            "string": "History of linguistics"
+        },
+        {
+            "prefix": "141",
+            "string": "Semiotics"
+        },
+        {
+            "prefix": "1411",
+            "string": ""
+        },
+        {
+            "prefix": "1411 ",
+            "string": "CS Peirce"
+        },
+        {
+            "prefix": "142",
+            "string": "Valency"
+        },
+        {
+            "prefix": "15",
+            "string": "Semantics"
+        },
+        {
+            "prefix": "16",
+            "string": "languages"
+        },
+        {
+            "prefix": "161",
+            "string": "ASL"
+        },
+        {
+            "prefix": "162",
+            "string": "Russian"
+        },
+        {
+            "prefix": "163",
+            "string": "Afroasiatic"
+        },
+        {
+            "prefix": "17",
+            "string": "African linguistics"
+        },
+        {
+            "prefix": "171",
+            "string": "Bantu"
+        },
+        {
+            "prefix": "1711",
+            "string": "Bantu tone"
+        },
+        {
+            "prefix": "18",
+            "string": "Cognitive grammar"
+        },
+        {
+            "prefix": "2",
+            "string": "Philosophy"
+        },
+        {
+            "prefix": "21",
+            "string": "philosophy of science"
+        },
+        {
+            "prefix": "23",
+            "string": " philosophy of mathematics"
+        },
+        {
+            "prefix": "24",
+            "string": "continental philosophy"
+        },
+        {
+            "prefix": "241",
+            "string": "Husserl"
+        },
+        {
+            "prefix": "25",
+            "string": "analytic philosphy"
+        },
+        {
+            "prefix": "26",
+            "string": "Continental vs analytic"
+        },
+        {
+            "prefix": "28",
+            "string": "Other history of philosophy"
+        },
+        {
+            "prefix": "281",
+            "string": "CS Peirce"
+        },
+        {
+            "prefix": "3",
+            "string": "Psychology"
+        },
+        {
+            "prefix": "31",
+            "string": "cognitive psychology"
+        },
+        {
+            "prefix": "32",
+            "string": "history of psychology"
+        },
+        {
+            "prefix": "33",
+            "string": "consciousness"
+        },
+        {
+            "prefix": "331",
+            "string": "Jaynes"
+        },
+        {
+            "prefix": "4",
+            "string": "Computer science"
+        },
+        {
+            "prefix": "41",
+            "string": "Machine learning"
+        },
+        {
+            "prefix": "411",
+            "string": "Deep learning"
+        },
+        {
+            "prefix": "412",
+            "string": "LLMs"
+        },
+        {
+            "prefix": "42",
+            "string": "Data visualization"
+        },
+        {
+            "prefix": "43",
+            "string": "Programming"
+        },
+        {
+            "prefix": "44",
+            "string": "Comp lx and NLP"
+        },
+        {
+            "prefix": "45",
+            "string": "Algorithmic complexity"
+        },
+        {
+            "prefix": "46",
+            "string": "Latex"
+        },
+        {
+            "prefix": "5",
+            "string": "Mathematics"
+        },
+        {
+            "prefix": "51",
+            "string": "History of math"
+        },
+        {
+            "prefix": "511",
+            "string": "Viete, 16th century"
+        },
+        {
+            "prefix": "52",
+            "string": "Algebra"
+        },
+        {
+            "prefix": "53",
+            "string": "Category theory"
+        },
+        {
+            "prefix": "54",
+            "string": "Statistics"
+        },
+        {
+            "prefix": "55",
+            "string": "Graphs"
+        },
+        {
+            "prefix": "56",
+            "string": "Number theory"
+        },
+        {
+            "prefix": "57",
+            "string": "Topology, alg topology"
+        },
+        {
+            "prefix": "58",
+            "string": "Probability"
+        },
+        {
+            "prefix": "6",
+            "string": "Enlightenment"
+        },
+        {
+            "prefix": "61",
+            "string": "Random"
+        },
+        {
+            "prefix": "611",
+            "string": "Castaneda"
+        },
+        {
+            "prefix": "7",
+            "string": "History and politics"
+        },
+        {
+            "prefix": "71",
+            "string": "European history"
+        },
+        {
+            "prefix": "711",
+            "string": "History of France"
+        },
+        {
+            "prefix": "7111",
+            "string": "Parapolitics"
+        },
+        {
+            "prefix": "712",
+            "string": "History of Judaism"
+        },
+        {
+            "prefix": "713",
+            "string": "History of Russia"
+        },
+        {
+            "prefix": "72",
+            "string": "Parapolitics"
+        },
+        {
+            "prefix": "721",
+            "string": "Drug trafficking"
+        },
+        {
+            "prefix": "722",
+            "string": "Mercenaries"
+        },
+        {
+            "prefix": "73",
+            "string": "United States"
+        },
+        {
+            "prefix": "731",
+            "string": "US conspiracies"
+        },
+        {
+            "prefix": "7311",
+            "string": "Covid"
+        },
+        {
+            "prefix": "74",
+            "string": "Africa"
+        },
+        {
+            "prefix": "75",
+            "string": "Intelligence"
+        },
+        {
+            "prefix": "76",
+            "string": "Middle East"
+        },
+        {
+            "prefix": "8",
+            "string": "Science"
+        },
+        {
+            "prefix": "81",
+            "string": "History of science"
+        },
+        {
+            "prefix": "811",
+            "string": "History of science 16th century"
+        },
+        {
+            "prefix": "812",
+            "string": "History of science 17th century"
+        },
+        {
+            "prefix": "813",
+            "string": "History of science 18th century"
+        },
+        {
+            "prefix": "814",
+            "string": "History of science 19th century"
+        },
+        {
+            "prefix": "815",
+            "string": "History of science 20th century"
+        },
+        {
+            "prefix": "82",
+            "string": "Physics"
+        },
+        {
+            "prefix": "83",
+            "string": "Statistical models"
+        },
+        {
+            "prefix": "9",
+            "string": "Social sciences"
+        },
+        {
+            "prefix": "91",
+            "string": "Economics"
+        },
+        {
+            "prefix": "92",
+            "string": "Anthropology"
+        },
+        {
+            "prefix": "93",
+            "string": "Sociology"
+        },
+        {
+            "prefix": "931",
+            "string": "authoritarian personality"
+        },
+        {
+            "prefix": "932",
+            "string": "generations"
+        },
+        {
+            "prefix": "933",
+            "string": "history of sociology"
+        },
+        {
+            "prefix": "A",
+            "string": "Real life"
+        },
+        {
+            "prefix": "A1",
+            "string": "Academia"
+        },
+        {
+            "prefix": "A11",
+            "string": "Letters of rec"
+        },
+        {
+            "prefix": "A12",
+            "string": "Student papers, theses"
+        },
+        {
+            "prefix": "A2",
+            "string": "Personal"
+        },
+        {
+            "prefix": "A21",
+            "string": "Medical"
+        },
+        {
+            "prefix": "A3",
+            "string": "Papers I wrote"
+        }
+    ]
+}
