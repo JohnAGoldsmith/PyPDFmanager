@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 PDF Manager Qt - GUI wrapper for PDF Manager using PySide6
-Version 2.10 - Double-click to open PDFs + streamlined ToK prefix addition
+Version 2.11 - Added keyboard shortcuts (Ctrl+A, Ctrl+=, Ctrl+-)
 """
 
 import os
@@ -696,9 +696,18 @@ class PDFManagerWindow(QMainWindow):
         # Status bar
         self.statusBar().showMessage("Ready - Load files to begin")
 
-        # Keyboard shortcut: Ctrl+Q to quit
+        # Keyboard shortcuts
         quit_shortcut = QShortcut(QKeySequence("Ctrl+Q"), self)
         quit_shortcut.activated.connect(self.close)
+
+        add_prefix_shortcut = QShortcut(QKeySequence("Ctrl+A"), self)
+        add_prefix_shortcut.activated.connect(self.add_tok_prefix_to_file)
+
+        increase_font_shortcut = QShortcut(QKeySequence("Ctrl+="), self)
+        increase_font_shortcut.activated.connect(self.increase_font_size)
+
+        decrease_font_shortcut = QShortcut(QKeySequence("Ctrl+-"), self)
+        decrease_font_shortcut.activated.connect(self.decrease_font_size)
 
     def show_message(self, title, message, icon=QMessageBox.Information):
         """Show a message box"""
