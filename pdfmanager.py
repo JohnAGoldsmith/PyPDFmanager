@@ -1,8 +1,7 @@
-python33
 #!/usr/bin/env python3
 """
 PDF Manager Qt - GUI wrapper for PDF Manager using PySide6
-Version 2.9 - JSON with ToK field + Tree view for ToK codes
+Version 2.10 - Double-click to open PDFs + streamlined ToK prefix addition
 """
 
 import os
@@ -22,8 +21,8 @@ from PySide6.QtWidgets import (
     QDialogButtonBox, QLineEdit, QFormLayout, QSplitter,
     QTreeWidget, QTreeWidgetItem
 )
-from PySide6.QtCore import Qt, QThread, Signal
-from PySide6.QtGui import QFont, QShortcut, QKeySequence
+from PySide6.QtCore import Qt, QThread, Signal, QUrl
+from PySide6.QtGui import QFont, QShortcut, QKeySequence, QDesktopServices
 
 # Suppress pypdf warnings
 warnings.filterwarnings('ignore', category=UserWarning, module='pypdf')
@@ -521,6 +520,7 @@ class PDFManagerWindow(QMainWindow):
         self.files_being_edited = set()  # Track which files are currently being edited
         self.tok_being_edited = set()  # Track which ToK entries are being edited
         self.table_font_size = 9  # Default font size for tables
+        self.file_paths = {}  # Maps row number to full file path
         self.init_ui()
         
         # Auto-load ToK codes on startup
@@ -646,6 +646,7 @@ class PDFManagerWindow(QMainWindow):
         self.files_table.setFont(QFont("Courier", self.table_font_size))
         self.files_table.setSelectionBehavior(QTableWidget.SelectRows)  # Select entire rows
         self.files_table.itemChanged.connect(self.on_file_item_changed)
+        self.files_table.itemDoubleClicked.connect(self.on_file_double_clicked)
         files_layout.addWidget(self.files_table)
         
         # ===== RIGHT PANEL - ToK Tree =====
@@ -750,64 +751,76 @@ class PDFManagerWindow(QMainWindow):
         """Handle scan completion"""
         # Hide progress indicator
         self.progress_label.setVisible(False)
-        
+
         if not results:
             self.show_message("Scan Complete", "No PDFs matching the pattern were found.")
             self.statusBar().showMessage("Scan complete - no results")
             self.files_table.setRowCount(0)
+            self.file_paths.clear()
             return
-        
+
         # Write to file
         output_dir = self.manager.dropbox_path / "coffeetable"
         output_dir.mkdir(exist_ok=True)
         output_file_path = output_dir / "pdf-document.txt"
-        
+
         # Format results for file
         col1_width = max(len(r[0]) for r in results) + 2
         col2_width = max(len(r[1]) for r in results) + 2
         col3_width = max(len(r[2]) for r in results) + 2
-        
+
         col1_width = max(col1_width, 10)
         col2_width = max(col2_width, 20)
         col3_width = max(col3_width, 20)
-        
+
         output_text = f"{'Pattern':<{col1_width}} {'Filename':<{col2_width}} {'Folder':<{col3_width}} Internal Title\n"
         output_text += "-" * (col1_width + col2_width + col3_width + 50) + "\n"
-        
+
         for pattern, filename, folder, title in sorted(results, key=lambda x: (x[0], x[1])):
             output_text += f"{pattern:<{col1_width}} {filename:<{col2_width}} {folder:<{col3_width}} {title}\n"
-        
+
         # Write to file
         with open(output_file_path, 'w', encoding='utf-8') as f:
             f.write(output_text)
-        
+
         # Populate the files table with 3 columns
         self.files_table.blockSignals(True)
         self.files_table.setRowCount(len(results))
-        
+        self.file_paths.clear()
+
         sorted_results = sorted(results, key=lambda x: (x[0], x[1]))
-        
+
         for row_idx, (pattern, filename, folder, title) in enumerate(sorted_results):
             # Column 0: Sequential index number
             index_item = QTableWidgetItem(str(row_idx + 1))
             index_item.setFlags(index_item.flags() & ~Qt.ItemIsEditable)  # Make read-only
-            
+
             # Column 1: ToK Index (the pattern like "A B")
             tok_item = QTableWidgetItem(pattern)
-            
+
             # Column 2: Filename (rest of the name)
             filename_item = QTableWidgetItem(filename)
-            
+
             self.files_table.setItem(row_idx, 0, index_item)
             self.files_table.setItem(row_idx, 1, tok_item)
             self.files_table.setItem(row_idx, 2, filename_item)
-        
+
+            # Store full path for this row
+            # Reconstruct full filename and path
+            full_filename = pattern + " " + filename
+            if folder == '[root]':
+                actual_folder = str(self.manager.dropbox_path)
+            else:
+                actual_folder = os.path.join(str(self.manager.dropbox_path), folder)
+            full_path = os.path.join(actual_folder, full_filename)
+            self.file_paths[row_idx] = full_path
+
         self.files_table.blockSignals(False)
-        
-        self.show_message("Scan Complete", 
+
+        self.show_message("Scan Complete",
                          f"Found {len(results)} PDFs with ToK indices.\n\n"
                          f"Results displayed in table and written to:\n{output_file_path}")
-        
+
         self.statusBar().showMessage(f"Scan complete - {len(results)} PDFs found")
 
     def scan_dropbox_for_pdfs(self):
@@ -1015,27 +1028,33 @@ class PDFManagerWindow(QMainWindow):
         """Load and display bare PDF files in the table"""
         try:
             bare_pdfs = self.manager.get_bare_pdfs(self.current_dir)
-            
+
             if not bare_pdfs:
                 self.show_message("No Files", "No bare PDF files found in current folder.")
                 self.files_table.setRowCount(0)
+                self.file_paths.clear()
                 return
-            
+
             # Disable signals while populating
             self.files_table.blockSignals(True)
-            
+
             # Clear and populate table
             self.files_table.setRowCount(len(bare_pdfs))
-            
+            self.file_paths.clear()
+
             for row_idx, (idx, filename) in enumerate(bare_pdfs):
                 filename_item = QTableWidgetItem(filename)
                 self.files_table.setItem(row_idx, 0, filename_item)
-            
+
+                # Store full path for this row
+                full_path = os.path.join(self.current_dir, filename)
+                self.file_paths[row_idx] = full_path
+
             # Re-enable signals
             self.files_table.blockSignals(False)
-            
+
             self.statusBar().showMessage(f"Loaded {len(bare_pdfs)} bare PDF files from {self.current_dir}")
-            
+
         except Exception as e:
             self.show_message("Error", f"Error loading files: {str(e)}", QMessageBox.Critical)
     
@@ -1113,17 +1132,16 @@ class PDFManagerWindow(QMainWindow):
             
             # Update the manager's data
             self.manager.bare_pdf_files[file_index] = new_filename
-            
+
             # Update the display
             self.files_table.blockSignals(True)
             self.files_table.item(file_row, 0).setText(new_filename)
             self.files_table.blockSignals(False)
-            
+
+            # Update the file path
+            self.file_paths[file_row] = new_path
+
             self.statusBar().showMessage(f"Added prefix '{tok_code}' to file: {new_filename}")
-            self.show_message("Success", 
-                            f"ToK prefix added successfully!\n\n"
-                            f"Old: {actual_old_filename}\n"
-                            f"New: {new_filename}")
             
         except Exception as e:
             self.show_message("Error", f"Error renaming file: {str(e)}", QMessageBox.Critical)
@@ -1190,10 +1208,13 @@ class PDFManagerWindow(QMainWindow):
                 return
             
             os.rename(old_path, new_path)
-            
+
             # Update the manager's data
             self.manager.bare_pdf_files[row + 1] = new_filename
-            
+
+            # Update the file path
+            self.file_paths[row] = new_path
+
             self.statusBar().showMessage(f"Renamed: {old_filename} → {new_filename}")
             
         except Exception as e:
@@ -1390,6 +1411,33 @@ class PDFManagerWindow(QMainWindow):
         self.progress_label.setVisible(False)
         self.show_message("Error", f"An error occurred: {error_msg}", QMessageBox.Critical)
         self.statusBar().showMessage("Error occurred")
+
+    def on_file_double_clicked(self, item):
+        """Handle double-click on a file to open it"""
+        row = item.row()
+
+        # Get the full path for this row
+        if row not in self.file_paths:
+            self.statusBar().showMessage("Error: File path not found")
+            return
+
+        file_path = self.file_paths[row]
+
+        # Check if file exists
+        if not os.path.exists(file_path):
+            self.show_message("File Not Found",
+                            f"File not found:\n{file_path}",
+                            QMessageBox.Warning)
+            return
+
+        # Open with default application
+        url = QUrl.fromLocalFile(file_path)
+        if QDesktopServices.openUrl(url):
+            self.statusBar().showMessage(f"Opening: {os.path.basename(file_path)}")
+        else:
+            self.show_message("Error",
+                            f"Could not open file:\n{file_path}",
+                            QMessageBox.Critical)
 
 
 def main():
